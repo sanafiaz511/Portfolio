@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #0a0a0a;
+  color: white;
+}
+
+@layer base {
+  * {
+    user-select: none;
+  }
+
+  button, a {
+    cursor: pointer;
+  }
+}
