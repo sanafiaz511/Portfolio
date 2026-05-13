@@ -73,13 +73,13 @@
         <!-- Buttons -->
         <div class="flex flex-wrap gap-4 justify-center mt-10">
 
-          <a href="#projects"
+          <a aria-label="View Projects" href="#projects"
             class="border border-white/20 px-6 py-3 rounded-xl hover:border-white/40 hover:bg-white/5 transition duration-300"
           >
             View Projects
           </a>
 
-          <a href="/Sana_CV.pdf" download
+          <a aria-label="Download Curriculum Vitae" href="/Sana_CV.pdf" download
             class="border border-white/20 px-6 py-3 rounded-xl hover:border-white/40 transition duration-300"
           >
             Download CV

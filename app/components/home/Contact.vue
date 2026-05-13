@@ -33,6 +33,7 @@
 
         <!-- Email -->
         <a
+          aria-label="Send Email to Sana Fiaz"
           v-motion
           :initial="{ opacity: 0, scale: 0.8 }"
           :visible="{ opacity: 1, scale: 1, transition: { delay: 300, duration: 400 } }"
@@ -56,6 +57,7 @@
 
         <!-- GitHub -->
         <a
+          aria-label="Visit GitHub Profile"
           v-motion
           :initial="{ opacity: 0, scale: 0.8 }"
           :visible="{ opacity: 1, scale: 1, transition: { delay: 400, duration: 400 } }"
@@ -71,6 +73,7 @@
 
         <!-- LinkedIn -->
         <a
+          aria-label="Visit LinkedIn Profile"
           v-motion
           :initial="{ opacity: 0, scale: 0.8 }"
           :visible="{ opacity: 1, scale: 1, transition: { delay: 500, duration: 400 } }"
