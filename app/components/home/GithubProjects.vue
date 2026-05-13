@@ -27,18 +27,12 @@
         </div>
 
         <!-- Loading -->
-        <div
-          v-if="loading"
-          class="text-center text-gray-400"
-        >
+        <div v-if="loading" class="text-center text-gray-400">
           Loading repositories...
         </div>
 
         <!-- Grid -->
-        <div
-          v-else
-          class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
+        <div v-else class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
 
           <div
             v-for="(repo, index) in filteredRepos"
@@ -66,12 +60,19 @@
               {{ repo.description || 'No description available.' }}
             </p>
 
+            <!-- Languages -->
+            <div class="flex gap-2 flex-wrap mb-4">
+              <span
+                v-for="lang in repo.languages"
+                :key="lang"
+                class="px-2 py-1 border border-white/10 rounded text-xs text-gray-300"
+              >
+                {{ lang }}
+              </span>
+            </div>
+
             <!-- Stats -->
             <div class="flex items-center gap-4 text-xs text-gray-300 flex-wrap">
-
-              <span class="px-2 py-1 border border-white/10 rounded">
-                {{ repo.language || 'N/A' }}
-              </span>
 
               <span class="px-2 py-1 border border-white/10 rounded">
                 Public Repo
@@ -85,10 +86,10 @@
 
             <!-- Link -->
             <a
-              aria-label="Visit GitHub Repository"
               :href="repo.html_url"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Visit GitHub Repository"
               class="inline-block mt-6 text-blue-400 hover:text-blue-300 relative z-50"
             >
               View Repository →
@@ -106,16 +107,43 @@
 </template>
 
 <script setup>
-
 const { repos, loading, fetchRepos } = useGithub()
 
 await fetchRepos()
 
-const filteredRepos = computed(() => {
+/**
+ * Fetch languages for each repo
+ */
+const enrichedRepos = ref([])
 
-  return repos.value
-    .filter(repo => !repo.fork)
-    .slice(0, 6)
+const getLanguages = async (url) => {
+  const res = await fetch(url)
+  return await res.json()
+}
 
-})
+const loadReposWithLanguages = async () => {
+  const baseRepos = repos.value.filter(repo => !repo.fork).slice(0, 6)
+
+  enrichedRepos.value = await Promise.all(
+    baseRepos.map(async (repo) => {
+      let languages = []
+
+      try {
+        const langData = await getLanguages(repo.languages_url)
+        languages = Object.keys(langData)
+      } catch (e) {
+        languages = []
+      }
+
+      return {
+        ...repo,
+        languages
+      }
+    })
+  )
+}
+
+await loadReposWithLanguages()
+
+const filteredRepos = computed(() => enrichedRepos.value)
 </script>
