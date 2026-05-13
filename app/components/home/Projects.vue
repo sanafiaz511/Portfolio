@@ -13,10 +13,23 @@
         </h2>
 
         <!-- Grid -->
-        <div class="grid md:grid-cols-2 gap-8">
+        <div
+          v-motion
+          :initial="{
+            opacity: 0,
+            y: 50
+          }"
+          :visible="{
+            opacity: 1,
+            y: 0,
+            transition: {
+              duration: 700
+            }
+          }"
+         class="grid md:grid-cols-2 gap-8">
 
           <!-- Project 1 -->
-          <div class="border border-white/10 rounded-2xl p-6 bg-white/5">
+          <div class="glass-card hover-card spotlight-card rounded-2xl p-6">
             <h3 class="text-xl font-semibold mb-2">
               CNext – Multi-Tenant ERP System
             </h3>
@@ -53,7 +66,7 @@
           </div>
 
           <!-- Project 2 -->
-          <div class="border border-white/10 rounded-2xl p-6 bg-white/5">
+          <div class="glass-card hover-card spotlight-card rounded-2xl p-6">
             <h3 class="text-xl font-semibold mb-2">
               Olivetti – Project Financial & Operations Management System
             </h3>
@@ -83,7 +96,7 @@
             </div>
           </div>
 
-          <div class="border border-white/10 rounded-2xl p-6 bg-white/5">
+          <div class="glass-card hover-card spotlight-card rounded-2xl p-6">
             <h3 class="text-xl font-semibold mb-2">
               Interapptive – Multi-Service Web Platform
             </h3>
@@ -112,7 +125,7 @@
             </div>
           </div>
 
-          <div class="border border-white/10 rounded-2xl p-6 bg-white/5">
+          <div class="glass-card hover-card spotlight-card rounded-2xl p-6">
             <h3 class="text-xl font-semibold mb-2">
               Hyperlook – Multi-Level Organizational & Stock Management System
             </h3>

@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+/* =========================
+   Base Styles
+========================= */
+
 html {
   scroll-behavior: smooth;
 }
@@ -9,28 +13,121 @@ html {
 body {
   background-color: #0a0a0a;
   color: white;
+  font-family: Inter, sans-serif;
 }
 
-@layer base {
-  * {
-    user-select: none;
-  }
+/* =========================
+   Reusable Containers
+========================= */
 
-  button, a {
-    cursor: pointer;
-  }
+.container-custom {
+  max-width: 1200px;
+  margin: auto;
+  padding-left: 24px;
+  padding-right: 24px;
 }
+
+/* =========================
+   Section Spacing
+========================= */
+
+.section-padding {
+  padding-top: 120px;
+  padding-bottom: 120px;
+}
+
+/* =========================
+   Glass Effect
+========================= */
+
+.glass-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(10px);
+}
+
+/* =========================
+   Hover Animation
+========================= */
+
+.hover-card {
+  transition: all 0.3s ease;
+}
+
+.hover-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.08);
+}
+
+/* =========================
+   Animated Grid
+========================= */
 
 .grid-bg {
   width: 100%;
   height: 100%;
-  background-image: linear-gradient(#ffffff10 1px, transparent 1px),
-                    linear-gradient(90deg, #ffffff10 1px, transparent 1px);
+  background-image:
+    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+
   background-size: 60px 60px;
   animation: moveGrid 20s linear infinite;
 }
 
 @keyframes moveGrid {
-  from { transform: translateY(0); }
-  to { transform: translateY(60px); }
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(60px);
+  }
+}
+
+/* =========================
+   Floating Animation
+========================= */
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.spotlight-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.spotlight-card::before {
+  content: '';
+
+  position: absolute;
+  inset: 0;
+
+  background: radial-gradient(
+    circle at var(--x) var(--y),
+    rgba(255,255,255,0.12),
+    transparent 40%
+  );
+
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.spotlight-card:hover::before {
+  opacity: 1;
 }

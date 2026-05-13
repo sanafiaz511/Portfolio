@@ -2,9 +2,18 @@
   <section class="relative min-h-screen flex items-center justify-center px-6 overflow-hidden">
 
     <div
-      v-motion
-      :initial="{ opacity: 0, y: 40 }"
-      :enter="{ opacity: 1, y: 0, transition: { duration: 800 } }"
+     v-motion
+      :initial="{
+        opacity: 0,
+        y: 60
+      }"
+      :enter="{
+        opacity: 1,
+        y: 0,
+        transition: {
+          duration: 800
+        }
+      }"
       class="text-center max-w-4xl relative z-10"
     >
       <!-- Background Glow -->
@@ -12,7 +21,20 @@
       <div class="absolute w-[400px] h-[400px] bg-purple-500/10 rounded-full blur-3xl bottom-[-100px] right-[-100px]"></div>
 
       <!-- Content -->
-      <div class="text-center max-w-4xl relative z-10">
+      <div
+      v-motion
+      :initial="{
+        opacity: 0,
+        y: 60
+      }"
+      :enter="{
+        opacity: 1,
+        y: 0,
+        transition: {
+          duration: 800
+        }
+      }"
+       class="text-center max-w-4xl relative z-10">
 
         <!-- Badge -->
         <p class="text-sm text-blue-400 mb-4 tracking-widest uppercase">
@@ -32,7 +54,7 @@
         </p>
 
         <!-- Tech Stack Pills -->
-        <div class="flex flex-wrap justify-center gap-3 mt-8 text-sm">
+        <div class="flex flex-wrap justify-center gap-3 mt-8 text-sm animate-float">
           <span class="px-3 py-1 border border-white/10 rounded-full">Laravel</span>
           <span class="px-3 py-1 border border-white/10 rounded-full">CodeIgniter</span>
           <span class="px-3 py-1 border border-white/10 rounded-full">PHP</span>
@@ -52,7 +74,7 @@
         <div class="flex flex-wrap gap-4 justify-center mt-10">
 
           <a href="#projects"
-            class="bg-white text-black px-6 py-3 rounded-xl hover:scale-105 transition duration-300"
+            class="border border-white/20 px-6 py-3 rounded-xl hover:border-white/40 hover:bg-white/5 transition duration-300"
           >
             View Projects
           </a>
@@ -68,5 +90,6 @@
       </div>
 
       </div>
+      <div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-b from-transparent to-[#0a0a0a]"></div>
   </section>
 </template>
